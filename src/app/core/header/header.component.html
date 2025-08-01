@@ -1,1 +1,22 @@
-<p>header works!</p>
+<header *ngIf="texts && navItems">
+  <div class="content-container">
+    <nav>
+      <ul>
+        <li *ngFor="let navItem of navItems; let i = index">
+          <div [ngClass]="{
+            'number-container': true,
+            'text-4': true,
+            'b': true,
+            'selected': currentStep === i + 1
+          }">
+            {{ i + 1 }}
+          </div>
+          <div class="text-container">
+            <span class="step-number text-5 r">{{ texts['header.step'].toUpperCase() }} {{ i + 1 }}</span>
+            <span class="step-title text-4 b">{{ navItem.toUpperCase() }}</span>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

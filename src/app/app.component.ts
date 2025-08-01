@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { TextService } from './shared/services/text.service';
 import { unflattenText } from './shared/utils/helper';
@@ -14,9 +14,10 @@ import { PageData } from './shared/models/page-data';
 })
 export class AppComponent implements OnInit{
   title = 'multi-step-form';
-  texts!: {[p: string]: string};
+  texts!: {[p: string]: any};
   data!: PageData;
-
+  screenWidth!: number;
+  navItems!: string[];
 
   constructor(
     private textService : TextService,
@@ -34,12 +35,14 @@ export class AppComponent implements OnInit{
     this.textService.getAllTextsFromDB().subscribe({
       next: data => {
         this.texts = unflattenText(data);
+        this.afterTextsLoaded();
       },
       error: () => {
         console.warn("Backend inaccessible, chargement des textes depuis le fichier");
         this.textService.getAllTextsFromFile().subscribe({
           next: fileData => {
             this.texts = fileData;
+            this.afterTextsLoaded();
           },
           error: () => {
             console.error("Impossible de charger les textes depuis le fichier.");
@@ -84,5 +87,14 @@ export class AppComponent implements OnInit{
         console.error("Échec du chargement des données de secours");
       }
     });
+  }
+
+  afterTextsLoaded() {
+    this.navItems = this.texts['header.nav'] || [];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    this.screenWidth = window.innerWidth;
   }
 }

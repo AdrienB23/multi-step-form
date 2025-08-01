@@ -17,7 +17,7 @@ export class TextService {
     return this.http.get<{ [key: string]: string }>(API_URL + '/texts/');
   }
 
-  getAllTextsFromFile(): Observable<{ [key: string]: string }> {
-    return this.http.get<{ [key: string]: string }>(FILE_URL + 'text.json');
+  getAllTextsFromFile(): Observable<any> {
+    return this.http.get<any>(FILE_URL + 'text.json');
   }
 }

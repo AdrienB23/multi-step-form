@@ -1,11 +1,13 @@
 {
   "add.description": "Add-ons help enhance your gaming experience.",
   "add.title": "Pick add-ons",
-  "header.add": "Add-ons",
-  "header.info": "Your info",
-  "header.plan": "Select plan",
+  "header.nav": [
+    "Your info",
+    "Select plan",
+    "Add-ons",
+    "Summary"
+  ],
   "header.step": "Step",
-  "header.summary": "Summary",
   "info.description": "Please provide your name, email address, and phone number.",
   "info.email.example": "e.g. stephenking@lorem.com",
   "info.email.title": "Email Adress",

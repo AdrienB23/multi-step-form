@@ -1,5 +1,8 @@
-<div class="page-container">
+<div *ngIf="texts" class="page-container">
   <main>
-    <router-outlet></router-outlet>
+    <div class="step-container">
+      <app-header [screenWidth]="screenWidth" [navItems]="navItems" [texts]="texts"></app-header>
+      <router-outlet [routerOutletData]="{texts: texts, data: data, screenWidth: screenWidth}"></router-outlet>
+    </div>
   </main>
 </div>

@@ -1,0 +1,30 @@
+@use '../assets/variables' as *;
+@use "sass:map";
+@use 'sass:color';
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: map.get($blue-palette, 100);
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  width: 940px;
+  height: 600px;
+  background-color: $white;
+  border-radius: 15px;
+  box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.0951);
+}
+
+.step-container {
+  display: flex;
+  width: 840px;
+  justify-content: space-between;
+  align-items: end;
+}

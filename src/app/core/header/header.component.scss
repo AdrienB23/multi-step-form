@@ -1,0 +1,67 @@
+@use '../../../assets/variables' as *;
+@use "sass:map";
+@use 'sass:color';
+
+.step-number {
+  color: map.get($blue-palette, 300);
+}
+
+.step-title {
+  color: $white;
+}
+
+header {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  width: 274px;
+  height: 600px;
+  padding: $spacing-200;
+}
+
+.content-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+  padding: $spacing-500 $spacing-400;
+  background-image: url("../../../assets/images/bg-sidebar-desktop.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: $spacing-400;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  column-gap: $spacing-200;
+}
+
+.number-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px;
+  border: 1px solid $white;
+  border-radius: 999px;
+  color: $white;
+}
+
+.selected {
+  color: $black;
+  background-color: map.get($blue-palette, 200);
+  border: none;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+}
