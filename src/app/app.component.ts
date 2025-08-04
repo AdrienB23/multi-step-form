@@ -36,6 +36,7 @@ export class AppComponent implements OnInit{
       next: data => {
         this.texts = unflattenText(data);
         this.afterTextsLoaded();
+        console.log(this.texts);
       },
       error: () => {
         console.warn("Backend inaccessible, chargement des textes depuis le fichier");
@@ -90,7 +91,7 @@ export class AppComponent implements OnInit{
   }
 
   afterTextsLoaded() {
-    this.navItems = this.texts['header.nav'] || [];
+    this.navItems = this.texts['header']['nav'] || [];
   }
 
   @HostListener('window:resize', ['$event'])
