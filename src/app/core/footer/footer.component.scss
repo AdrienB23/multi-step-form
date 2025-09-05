@@ -1,0 +1,83 @@
+@use '../../../assets/variables' as *;
+@use "sass:map";
+@use 'sass:color';
+
+@media only screen and (max-width: 600px) {
+  footer {
+    padding: $spacing-200;
+    background-color: $white;
+  }
+
+  button {
+    border-radius: 4px;
+  }
+
+  .next, .confirm, .next:hover, .confirm:hover {
+    padding: 10px $spacing-200;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  footer {
+    height: 80px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  footer {
+    height: 96px;
+  }
+}
+
+footer {
+  display: flex;
+  align-items: start;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.info {
+  justify-content: end;
+}
+
+.back {
+  color: $grey;
+}
+
+.back:hover {
+  color: map.get($blue-palette, 950);
+}
+
+.next, .confirm, .next:hover, .confirm:hover {
+  color: $white;
+  border-radius: 8px;
+  padding: $spacing-200 $spacing-300;
+}
+
+.next {
+  background: map.get($blue-palette, 950);
+}
+
+.next:hover {
+  background: map.get($blue-palette, 700);
+}
+
+.confirm {
+  background: map.get($purple-palette, 600);
+}
+
+.confirm:hover {
+  background: map.get($purple-palette, 400);
+}
+
+@media only screen and (max-width: 600px) {
+  .next, .confirm, .next:hover, .confirm:hover {
+    padding: 10px $spacing-200;
+  }
+}

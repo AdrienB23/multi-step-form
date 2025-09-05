@@ -5,6 +5,7 @@ import { unflattenText } from './shared/utils/helper';
 import { PlanService } from './shared/services/plan.service';
 import { AddOnsService } from './shared/services/add-ons.service';
 import { PageData } from './shared/models/page-data';
+import { PageEnum } from './shared/utils/page-enum';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,11 @@ import { PageData } from './shared/models/page-data';
 })
 export class AppComponent implements OnInit{
   title = 'multi-step-form';
-  texts!: {[p: string]: any};
+  texts!: { [p: string]: any };
   data!: PageData;
   screenWidth!: number;
   navItems!: string[];
+  page!: PageEnum;
 
   constructor(
     private textService : TextService,
@@ -29,6 +31,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.getTexts();
     this.getDatas();
+    this.page = PageEnum.INFO;
   }
 
   getTexts() {
@@ -44,6 +47,7 @@ export class AppComponent implements OnInit{
           next: fileData => {
             this.texts = fileData;
             this.afterTextsLoaded();
+            console.log(this.texts);
           },
           error: () => {
             console.error("Impossible de charger les textes depuis le fichier.");
@@ -61,6 +65,7 @@ export class AppComponent implements OnInit{
       next: result => {
         if (result.plans.length && result.addOns.length) {
           this.data = result;
+          console.log(this.data);
         } else {
           console.warn("Chargement partiel ou vide, lecture du fichier de secours");
           this.loadDataFromFile();
@@ -83,6 +88,7 @@ export class AppComponent implements OnInit{
           plans: fileData.plans,
           addOns: fileData.addOns,
         };
+        console.log(this.data);
       },
       error: () => {
         console.error("Échec du chargement des données de secours");
@@ -91,11 +97,13 @@ export class AppComponent implements OnInit{
   }
 
   afterTextsLoaded() {
-    this.navItems = this.texts['header']['nav'] || [];
+    this.navItems = this.texts['header.nav'] || [];
   }
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
     this.screenWidth = window.innerWidth;
   }
+
+  protected readonly PageEnum = PageEnum;
 }

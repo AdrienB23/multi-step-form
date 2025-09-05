@@ -8,14 +8,17 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  height: fit-content;
   width: 100%;
   background-color: map.get($blue-palette, 100);
+  padding: 0 $spacing-500;
 }
 
 main {
   display: flex;
-  flex-direction: row;
-  width: 940px;
+  min-width: 600px;
+  max-width: 940px;
+  width: 100%;
   height: 600px;
   background-color: $white;
   border-radius: 15px;
@@ -24,7 +27,66 @@ main {
 
 .step-container {
   display: flex;
-  width: 840px;
+  min-width: 544px;
+  max-width: 840px;
+  width: 90%;
   justify-content: space-between;
   align-items: end;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+app-footer {
+  width: 100%;
+}
+
+footer {
+  height: fit-content;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobile {
+    background-image: url("../assets/images/bg-sidebar-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: map.get($blue-palette, 100);
+    justify-content: start;
+    padding: 0;
+  }
+
+  main {
+    flex-direction: column;
+    width: 100%;
+    min-width: initial;
+    max-width: initial;
+    height: initial;
+    background: none;
+    box-shadow: none;
+    margin-top: $spacing-400;
+  }
+
+  .step-container {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: initial;
+    max-width: initial;
+    width: 100%;
+    height: calc(100vh - $spacing-400);
+  }
+
+  .main-container {
+    align-items: center;
+    justify-content: start;
+  }
+
+  app-header {
+    width: 100%;
+  }
 }

@@ -65,3 +65,20 @@ li {
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: initial;
+    width: initial;
+    padding: 0;
+  }
+  .content-container {
+    background: none;
+    justify-content: center;
+  }
+
+  ul {
+    flex-direction: row;
+    column-gap: $spacing-200;
+  }
+}

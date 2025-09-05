@@ -1,8 +1,21 @@
-<div *ngIf="texts" class="page-container">
+<div *ngIf="texts" [ngClass]="{
+  'page-container': true,
+  'mobile': screenWidth <= 600
+ }">
   <main>
-    <div class="step-container">
-      <app-header [screenWidth]="screenWidth" [navItems]="navItems" [texts]="texts"></app-header>
-      <router-outlet [routerOutletData]="{texts: texts, data: data, screenWidth: screenWidth}"></router-outlet>
+    <div *ngIf="screenWidth > 600" class="step-container">
+      <app-header [navItems]="navItems" [screenWidth]="screenWidth" [texts]="texts"></app-header>
+      <div class="main-container">
+        <router-outlet [routerOutletData]="{texts: texts, data: data, screenWidth: screenWidth}"></router-outlet>
+        <app-footer *ngIf="page !== PageEnum.THANK_YOU" [screenWidth]="screenWidth" [texts]="texts"></app-footer>
+      </div>
+    </div>
+    <div *ngIf="screenWidth <= 600" class="step-container">
+      <div class="main-container">
+        <app-header [navItems]="navItems" [screenWidth]="screenWidth" [texts]="texts" [page]="page"></app-header>
+        <router-outlet [routerOutletData]="{texts: texts, data: data, screenWidth: screenWidth}"></router-outlet>
+      </div>
+      <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [screenWidth]="screenWidth" [texts]="texts"></app-footer>
     </div>
   </main>
 </div>

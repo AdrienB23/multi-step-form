@@ -7,9 +7,9 @@ import { SummaryComponent } from '../../components/summary/summary.component';
 import { ThankYouComponent } from '../../components/thank-you/thank-you.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'your-info', pathMatch: 'full' },
-  { path: 'your-info', component: YourInfoComponent },
-  { path: 'select-plan', component: SelectPlanComponent },
+  { path: '', redirectTo: 'info', pathMatch: 'full' },
+  { path: 'info', component: YourInfoComponent },
+  { path: 'plan', component: SelectPlanComponent },
   { path: 'add-ons', component: AddOnsComponent },
   { path: 'summary', component: SummaryComponent },
   { path: 'thank-you', component: ThankYouComponent },

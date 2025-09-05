@@ -7,11 +7,11 @@
             'number-container': true,
             'text-4': true,
             'b': true,
-            'selected': currentStep === i + 1
+            'selected': currentStep === i
           }">
             {{ i + 1 }}
           </div>
-          <div class="text-container">
+          <div *ngIf="screenWidth > 600" class="text-container">
             <span class="step-number text-5 r">{{ texts['header']['step'].toUpperCase() }} {{ i + 1 }}</span>
             <span class="step-title text-4 b">{{ navItem.toUpperCase() }}</span>
           </div>

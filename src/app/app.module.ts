@@ -11,6 +11,8 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { provideHttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './core/app-routing/app-routing.module';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './core/footer/footer.component';
+import { ButtonDirective, ButtonLabel } from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -20,12 +22,15 @@ import { RouterModule } from '@angular/router';
     SelectPlanComponent,
     AddOnsComponent,
     SummaryComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    ButtonDirective,
+    ButtonLabel
   ],
   providers: [
     provideHttpClient()

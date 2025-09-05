@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif !important;
   color: $black;
   font-weight: $regular;
 }
@@ -28,41 +28,45 @@ ul {
 /* FONT SIZE */
 
 .text-1 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 
 .text-2 {
-  font-size: 24px;
+  font-size: 24px !important;
 }
 
 .text-3 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .text-4 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .text-5 {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 /* FONT WEIGHT */
 
 .text-1, .text-2, .b  {
-  font-weight: $bold;
+  font-weight: $bold !important;
 }
 
 .m {
-  font-weight: $medium;
+  font-weight: $medium !important;
 }
 
 /* LINE HEIGHT */
 
-.text-1, .text-2, .b, .text-3.m, text-4, text-5 {
-  line-height: 120%;
+.text-1, .text-2, .b, .text-3.m, .text-4, .text-5 {
+  line-height: 120% !important;
 }
 
-text-3.r, text-4.m {
-  line-height: 150%;
+.text-3.r, .text-4.m {
+  line-height: 150% !important;
+}
+
+.text-4.b {
+  letter-spacing: 1px !important;
 }
