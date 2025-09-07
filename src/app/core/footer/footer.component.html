@@ -1,17 +1,18 @@
-<footer *ngIf="texts && page !== PageEnum.THANK_YOU">
-  <div class="footer-container" [ngClass]="{
+<footer *ngIf="text && page !== PageEnum.THANK_YOU">
+  <div [ngClass]="{
     'footer-container': true,
     'info': page === PageEnum.INFO
-  }">
-    <button *ngIf="page !== PageEnum.INFO" [routerLink]="pages[page - 1]" class="back text-3 m" pButton><span
-      pButtonLabel>{{ texts['label.back'] }}</span></button>
+  }" class="footer-container">
+    <button *ngIf="page !== PageEnum.INFO" [routerLink]="pages[page - 1]" class="back text-3 m" pButton>
+      <span pButtonLabel>{{ text['footer.back'] }}</span>
+    </button>
     <button *ngIf="page !== PageEnum.SUMMARY" [ngClass]="{
     'next': true,
     'm': true,
     'text-4': screenWidth <= 600,
     'text-3': screenWidth > 600}" [routerLink]="pages[page + 1]"
             pButton>
-      <span pButtonLabel>{{ texts['label.next'] }}</span>
+      <span pButtonLabel>{{ text['footer.next'] }}</span>
     </button>
     <button *ngIf="page === PageEnum.SUMMARY" [ngClass]="{
       'next': true,
@@ -19,7 +20,7 @@
       'text-4': screenWidth < 600,
       'text-3': screenWidth >= 600}" pButton
             routerLink="thank-you">
-      <span pButtonLabel>{{ texts['label.confirm'] }}</span>
+      <span pButtonLabel>{{ text['footer.confirm'] }}</span>
     </button>
   </div>
 </footer>

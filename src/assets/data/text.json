@@ -1,6 +1,9 @@
 {
   "add.description": "Add-ons help enhance your gaming experience.",
   "add.title": "Pick add-ons",
+  "footer.back": "Go Back",
+  "footer.confirm": "Confirm",
+  "footer.next": "Next Step",
   "header.nav": [
     "Your info",
     "Select plan",
@@ -16,10 +19,7 @@
   "info.phone.example": "e.g. +1 234 567 890",
   "info.phone.title": "Phone Number",
   "info.title": "Personal info",
-  "label.back": "Go Back",
-  "label.confirm": "Confirm",
   "label.monthly": "Monthly",
-  "label.next": "Next Step",
   "label.yearly": "Yearly",
   "plan.description": "You have the option of monthly or yearly billing.",
   "plan.free": "months free",

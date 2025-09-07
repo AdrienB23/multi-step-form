@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { PageEnum } from '../../shared/utils/page-enum';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {TextService} from '../../shared/services/text.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,18 +11,19 @@ import { Subscription } from 'rxjs';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent implements OnInit, OnDestroy {
-  @Input() texts!: { [p: string]: any };
   @Input() screenWidth!: number;
   @Input() page!: PageEnum;
   @Output() pageChange = new EventEmitter<unknown>();
   pages = ['info', 'plan', 'add-ons', 'summary'];
+  text!: { [p: string]: any };
 
   private routerSub!: Subscription;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private textService: TextService) {
   }
 
   ngOnInit() {
+    this.getText();
     this.changePage(this.router.url);
 
     this.routerSub = this.router.events.subscribe(event => {
@@ -33,6 +35,17 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routerSub?.unsubscribe();
+  }
+
+  getText() {
+    this.textService.getFooterText().subscribe({
+      next: data => {
+        this.text = data;
+      },
+      error: err => {
+        console.error("Impossible de charger les textes de pied de page depuis le backend.", err);
+      }
+    });
   }
 
   changePage(url: string) {

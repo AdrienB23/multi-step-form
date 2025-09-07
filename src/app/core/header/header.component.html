@@ -1,8 +1,8 @@
-<header *ngIf="texts && navItems">
+<header *ngIf="text">
   <div class="content-container">
     <nav>
       <ul>
-        <li *ngFor="let navItem of navItems; let i = index">
+        <li *ngFor="let navItem of text['header.nav']; let i = index">
           <div [ngClass]="{
             'number-container': true,
             'text-4': true,
@@ -12,7 +12,7 @@
             {{ i + 1 }}
           </div>
           <div *ngIf="screenWidth > 600" class="text-container">
-            <span class="step-number text-5 r">{{ texts['header']['step'].toUpperCase() }} {{ i + 1 }}</span>
+            <span class="step-number text-5 r">{{ text['header.step'].toUpperCase() }} {{ i + 1 }}</span>
             <span class="step-title text-4 b">{{ navItem.toUpperCase() }}</span>
           </div>
         </li>
