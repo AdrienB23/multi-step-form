@@ -3,6 +3,7 @@ import { PageEnum } from '../../shared/utils/page-enum';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {TextService} from '../../shared/services/text.service';
+import {StepValidationService} from '../../shared/services/step-validation.service';
 
 @Component({
   selector: 'app-footer',
@@ -13,13 +14,14 @@ import {TextService} from '../../shared/services/text.service';
 export class FooterComponent implements OnInit, OnDestroy {
   @Input() screenWidth!: number;
   @Input() page!: PageEnum;
+  @Input() formValid!: boolean;
   @Output() pageChange = new EventEmitter<unknown>();
   pages = ['info', 'plan', 'add-ons', 'summary'];
   text!: { [p: string]: any };
 
   private routerSub!: Subscription;
 
-  constructor(private router: Router, private textService: TextService) {
+  constructor(private router: Router, private textService: TextService, protected stepValidationService: StepValidationService) {
   }
 
   ngOnInit() {

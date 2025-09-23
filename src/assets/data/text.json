@@ -14,6 +14,7 @@
   "info.description": "Please provide your name, email address, and phone number.",
   "info.email.example": "e.g. stephenking@lorem.com",
   "info.email.title": "Email Adress",
+  "info.error": "This field is required",
   "info.name.example": "e.g. Stephen King",
   "info.name.title": "Name",
   "info.phone.example": "e.g. +1 234 567 890",

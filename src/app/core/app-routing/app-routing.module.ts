@@ -5,6 +5,7 @@ import {AddOnsComponent} from '../../components/add-ons/add-ons.component';
 import {SummaryComponent} from '../../components/summary/summary.component';
 import {ThankYouComponent} from '../../components/thank-you/thank-you.component';
 import {YourInfoComponent} from '../../components/your-info/your-info.component';
+import {stepGuard} from '../../shared/guards/step.guard';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'info', pathMatch: 'full'},
@@ -14,19 +15,23 @@ export const routes: Routes = [
   },
   {
     path: 'plan',
-    component: SelectPlanComponent
+    component: SelectPlanComponent,
+    canActivate: [stepGuard]
   },
   {
     path: 'add-ons',
-    component: AddOnsComponent
+    component: AddOnsComponent,
+    canActivate: [stepGuard]
   },
   {
     path: 'summary',
-    component: SummaryComponent
+    component: SummaryComponent,
+    canActivate: [stepGuard]
   },
   {
     path: 'thank-you',
-    component: ThankYouComponent
+    component: ThankYouComponent,
+    canActivate: [stepGuard]
   },
 ];
 

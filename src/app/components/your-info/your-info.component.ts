@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TextService} from '../../shared/services/text.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {StepValidationService} from '../../shared/services/step-validation.service';
+import {FormDataService} from '../../shared/services/form-data.service';
 
 @Component({
   selector: 'app-your-info',
@@ -8,9 +11,14 @@ import {TextService} from '../../shared/services/text.service';
   styleUrl: './your-info.component.scss'
 })
 export class YourInfoComponent implements OnInit {
-  text: {[p: string]: any} = {};
+  @Output() formValidChange = new EventEmitter<boolean>();
 
-  constructor(private textService: TextService) {}
+  text: { [p: string]: any } = {};
+  form!: FormGroup;
+  value: string | undefined;
+
+  constructor(private fb: FormBuilder, private textService: TextService, private stepValidationService: StepValidationService, private formDataService: FormDataService) {
+  }
 
   ngOnInit() {
     this.textService.getInfoText().subscribe({
@@ -18,5 +26,32 @@ export class YourInfoComponent implements OnInit {
         this.text = data;
       }
     });
+    this.form = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9\\s]{7,20}$')]]
+    });
+
+    const saved = this.formDataService.getStepData('info');
+    if (saved) {
+      this.form.patchValue(saved);
+    }
+
+    this.form.statusChanges.subscribe(() => {
+      const isValid = this.form.valid;
+      this.stepValidationService.setStepValid('info', isValid);
+      this.formValidChange.emit(isValid);
+      if (isValid) {
+        this.onSubmit();
+      }
+    });
   }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.formDataService.setStepData('info', this.form.value);
+    }
+  }
+
+  protected readonly length = length;
 }

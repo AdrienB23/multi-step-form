@@ -1,27 +1,29 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { PageData } from './shared/models/page-data';
-import { PageEnum } from './shared/utils/page-enum';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {PageEnum} from './shared/utils/page-enum';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  standalone: false,
-  styleUrl: './app.component.scss'
+  selector: 'app-root', templateUrl: './app.component.html', standalone: false, styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'multi-step-form';
-  texts!: { [p: string]: any };
-  data!: PageData;
   screenWidth = window.innerWidth;
   page!: PageEnum;
+  formValid = false;
 
   ngOnInit() {
     this.page = PageEnum.INFO;
   }
 
-  @HostListener('window:resize', ['$event'])
-  getScreenSize() {
+  @HostListener('window:resize', ['$event']) getScreenSize() {
     this.screenWidth = window.innerWidth;
+  }
+
+  onRouteActivate(component: any) {
+    if (component.formValidChange) {
+      component.formValidChange.subscribe((valid: boolean) => {
+        this.formValid = valid;
+      });
+    }
   }
 
   protected readonly PageEnum = PageEnum;

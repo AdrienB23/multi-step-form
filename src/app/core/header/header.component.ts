@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { PageEnum } from '../../shared/utils/page-enum';
 import {TextService} from '../../shared/services/text.service';
 
@@ -8,7 +8,7 @@ import {TextService} from '../../shared/services/text.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges  {
   @Input() screenWidth!: number;
   @Input() page!: PageEnum;
   text!: {[p: string]: any};
@@ -23,8 +23,14 @@ export class HeaderComponent implements OnInit {
     this.textService.getHeaderText().subscribe({
       next: data => {
         this.text = data;
-    }
+      }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['page'] && !changes['page'].isFirstChange()) {
+      this.currentStep = changes['page'].currentValue;
+    }
   }
 
 }

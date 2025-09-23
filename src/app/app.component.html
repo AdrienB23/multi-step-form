@@ -4,18 +4,22 @@
  }">
   <main>
     <div *ngIf="screenWidth > 600" class="step-container">
-      <app-header [screenWidth]="screenWidth" ></app-header>
+      <app-header [page]="page" [screenWidth]="screenWidth"></app-header>
       <div class="main-container">
-        <router-outlet [routerOutletData]="{screenWidth: screenWidth}"></router-outlet>
-        <app-footer *ngIf="page !== PageEnum.THANK_YOU" [screenWidth]="screenWidth"></app-footer>
+        <router-outlet (activate)="onRouteActivate($event)"
+                       [routerOutletData]="{ screenWidth: screenWidth }"></router-outlet>
+        <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"
+                    [screenWidth]="screenWidth"></app-footer>
       </div>
     </div>
     <div *ngIf="screenWidth <= 600" class="step-container">
       <div class="main-container">
-        <app-header [screenWidth]="screenWidth" [page]="page"></app-header>
-        <router-outlet [routerOutletData]="{texts: texts, data: data, screenWidth: screenWidth}"></router-outlet>
+        <app-header [page]="page" [screenWidth]="screenWidth"></app-header>
+        <router-outlet (activate)="onRouteActivate($event)"
+                       [routerOutletData]="{ screenWidth: screenWidth }"></router-outlet>
       </div>
-      <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [screenWidth]="screenWidth"></app-footer>
+      <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"
+                  [screenWidth]="screenWidth"></app-footer>
     </div>
   </main>
 </div>
