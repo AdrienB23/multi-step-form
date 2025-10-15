@@ -1,6 +1,6 @@
 export interface Plan {
   id: number
   name: string
-  price_m: number
-  price_y: number
+  monthly_price: number
+  yearly_price: number
 }

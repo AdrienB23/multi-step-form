@@ -63,4 +63,24 @@ $spacing-1000: 80px;
   --p-inputtext-color: #{map.get($blue-palette, 950)};
   --p-inputtext-placeholder-color: #{$grey};
 
+  // =========================
+  //        TOGGLE SWITCH
+  // =========================
+  --p-toggleswitch-width: 38px;
+  --p-toggleswitch-height: 20px;
+  --p-toggleswitch-border-width: 0;
+  --p-toggleswitch-border-radius: 999px;
+  --p-toggleswitch-background: #{map.get($blue-palette, 950)};
+  --p-toggleswitch-checked-background: #{map.get($blue-palette, 950)};
+  --p-toggleswitch-checked-hover-background: #{map.get($blue-palette, 950)};
+  --p-toggleswitch-focus-background: #{map.get($blue-palette, 950)};
+  --p-toggleswitch-hover-background: #{map.get($blue-palette, 950)};
+  --p-toggleswitch-handle-size: 12px;
+  --p-toggleswitch-handle-background: #{$white};
+  --p-toggleswitch-handle-hover-background: #{$white};
+  --p-toggleswitch-handle-checked-background: #{$white};
+  --p-toggleswitch-handle-checked-hover-background: #{$white};
+  --p-toggleswitch-handle-focus-background: #{$white};
+  --p-toggleswitch-handle-border-radius: 999px;
+  --p-toggleswitch-gap: 4px;
 }

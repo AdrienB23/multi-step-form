@@ -25,6 +25,14 @@ export class TextService {
     return this.getTextByPrefix('info');
   }
 
+  getPlanText(): Observable<{[key: string]: any }> {
+    return this.getTextByPrefix('plan');
+  }
+
+  getPriceText(): Observable<{ [key: string]: any }> {
+    return this.getTextByPrefix('price');
+  }
+
   private getTextByPrefix(prefix: string): Observable<{ [key: string]: any }> {
     if (environment.frontendmentor) {
       return this.getTextByPrefixFromFile(prefix);

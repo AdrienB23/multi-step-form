@@ -13,13 +13,15 @@ import { AppRoutingModule } from './core/app-routing/app-routing.module';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './core/footer/footer.component';
 import { ButtonDirective, ButtonLabel } from "primeng/button";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputText} from 'primeng/inputtext';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {providePrimeNG} from 'primeng/config';
 import {InputNumber} from 'primeng/inputnumber';
 import {InputMask} from 'primeng/inputmask';
 import {StyleClass} from 'primeng/styleclass';
+import {DataView} from "primeng/dataview";
+import {ToggleSwitch} from 'primeng/toggleswitch';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,10 @@ import {StyleClass} from 'primeng/styleclass';
     InputText,
     InputNumber,
     InputMask,
-    StyleClass
+    StyleClass,
+    DataView,
+    ToggleSwitch,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync(),
