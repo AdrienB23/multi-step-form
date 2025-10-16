@@ -1,13 +1,13 @@
 <div class="component-container">
   <div class="title-container">
-    <h1 class="text-1">{{ text['info.title'] }}</h1>
-    <h2 class="text-3 r">{{ text['info.description'] }}</h2>
+    <h1 class="text-1 primary">{{ text['info.title'] }}</h1>
+    <h2 class="text-3 r secondary">{{ text['info.description'] }}</h2>
   </div>
   <div class="form-container">
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
       <div class="form-group">
         <div class="label-container">
-          <label class="text-4 r" for="name">{{ text['info.name.title'] }}</label>
+          <label class="text-4 r primary" for="name">{{ text['info.name.title'] }}</label>
           <span *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-4 b error">
             {{ text['info.error'] }}
           </span>
@@ -18,7 +18,7 @@
       </div>
       <div class="form-group">
         <div class="label-container">
-          <label class="text-4 r" for="email">{{ text['info.email.title'] }}</label>
+          <label class="text-4 r primary" for="email">{{ text['info.email.title'] }}</label>
           <span *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-4 b error">
             {{ text['info.error'] }}
           </span>
@@ -30,7 +30,7 @@
       </div>
       <div class="form-group">
         <div class="label-container">
-          <label class="text-4 r" for="phone">{{ text['info.phone.title'] }}</label>
+          <label class="text-4 r primary" for="phone">{{ text['info.phone.title'] }}</label>
           <span *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched" class="text-4 b error">
             {{ text['info.error'] }}
           </span>

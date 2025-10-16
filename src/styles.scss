@@ -89,6 +89,32 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 1px;
 }
 
+/* COLORS */
+
+.primary {
+  color: map.get($blue-palette, 950);
+}
+
+.secondary {
+  color: $grey;
+}
+
+.contrast-primary {
+  color: $white;
+}
+
+.contrast-secondary {
+  color: map.get($blue-palette, 300);
+}
+
+.info {
+  color: map.get($purple-palette, 600);
+}
+
+.error {
+  color: map.get($red-palette, 500);
+}
+
 // =========================
 //        CONTAINERS
 // =========================
@@ -97,4 +123,10 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: $spacing-500;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-100;
 }

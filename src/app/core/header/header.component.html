@@ -7,13 +7,15 @@
             'number-container': true,
             'text-4': true,
             'b': true,
-            'selected': currentStep === i || (currentStep === 4 && i === 3)
+            'selected': currentStep === i || (currentStep === 4 && i === 3),
+            'contrast-primary': !(currentStep === i || (currentStep === 4 && i === 3)),
+            'primary': currentStep === i || (currentStep === 4 && i === 3)
           }">
             {{ i + 1 }}
           </div>
           <div *ngIf="screenWidth > 600" class="text-container">
-            <span class="step-number text-5 r">{{ text['header.step'].toUpperCase() }} {{ i + 1 }}</span>
-            <span class="step-title text-4 b">{{ navItem.toUpperCase() }}</span>
+            <span class="step-number text-5 r contrast-secondary">{{ text['header.step'].toUpperCase() }} {{ i + 1 }}</span>
+            <span class="step-title text-4 b contrast-primary">{{ navItem.toUpperCase() }}</span>
           </div>
         </li>
       </ul>

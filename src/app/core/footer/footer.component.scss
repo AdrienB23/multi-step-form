@@ -46,34 +46,9 @@ footer {
   justify-content: end;
 }
 
-.back {
-  color: $grey;
-}
-
-.back:hover {
-  color: map.get($blue-palette, 950);
-}
-
 .next, .confirm, .next:hover, .confirm:hover {
-  color: $white;
   border-radius: 8px;
   padding: $spacing-200 $spacing-300;
-}
-
-.next {
-  background: map.get($blue-palette, 950);
-}
-
-.next:hover {
-  background: map.get($blue-palette, 700);
-}
-
-.confirm {
-  background: map.get($purple-palette, 600);
-}
-
-.confirm:hover {
-  background: map.get($purple-palette, 400);
 }
 
 @media only screen and (max-width: 600px) {

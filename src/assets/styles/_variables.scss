@@ -56,10 +56,12 @@ $spacing-1000: 80px;
   --p-inputtext-border-color: #{map.get($purple-palette, 200)};
   --p-inputtext-hover-border-color: #{map.get($purple-palette, 600)};
   --p-inputtext-focus-border-color: #{map.get($purple-palette, 600)};
+  --p-inputtext-border-radius: 8px;
   --p-inputtext-focus-ring-width: 0;
+
   --p-inputtext-padding-x: #{$spacing-200};
   --p-inputtext-padding-y: #{$spacing-100};
-  --p-inputtext-border-radius: 8px;
+
   --p-inputtext-color: #{map.get($blue-palette, 950)};
   --p-inputtext-placeholder-color: #{$grey};
 
@@ -68,19 +70,49 @@ $spacing-1000: 80px;
   // =========================
   --p-toggleswitch-width: 38px;
   --p-toggleswitch-height: 20px;
+
   --p-toggleswitch-border-width: 0;
   --p-toggleswitch-border-radius: 999px;
+
   --p-toggleswitch-background: #{map.get($blue-palette, 950)};
   --p-toggleswitch-checked-background: #{map.get($blue-palette, 950)};
   --p-toggleswitch-checked-hover-background: #{map.get($blue-palette, 950)};
   --p-toggleswitch-focus-background: #{map.get($blue-palette, 950)};
   --p-toggleswitch-hover-background: #{map.get($blue-palette, 950)};
+
+
   --p-toggleswitch-handle-size: 12px;
   --p-toggleswitch-handle-background: #{$white};
   --p-toggleswitch-handle-hover-background: #{$white};
   --p-toggleswitch-handle-checked-background: #{$white};
   --p-toggleswitch-handle-checked-hover-background: #{$white};
   --p-toggleswitch-handle-focus-background: #{$white};
+
   --p-toggleswitch-handle-border-radius: 999px;
+
   --p-toggleswitch-gap: 4px;
+
+  // =========================
+  //        DATA VIEW
+  // =========================
+  --p-dataview-border-width: 0;
+  --p-dataview-content-border-width : 0;
+
+  // =========================
+  //        BUTTONS
+  // =========================
+  --p-button-primary-background: #{map.get($blue-palette, 950)};
+  --p-button-primary-hover-background: #{map.get($blue-palette, 700)};
+  --p-button-primary-active-background: #{map.get($blue-palette, 700)};
+
+  --p-button-secondary-background: #{map.get($purple-palette, 600)};
+  --p-button-secondary-hover-background: #{map.get($purple-palette, 400)};
+  --p-button-secondary-active-background: #{map.get($purple-palette, 400)};
+
+  --p-button-contrast-background: none;
+  --p-button-contrast-hover-background: none;
+  --p-button-contrast-active-background: none;
+  --p-button-contrast-color: #{$grey};
+  --p-button-contrast-hover-color: #{map.get($blue-palette, 950)};
+  --p-button-contrast-active-color: #{map.get($blue-palette, 950)};
 }

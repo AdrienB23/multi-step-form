@@ -2,14 +2,6 @@
 @use "sass:map";
 @use 'sass:color';
 
-.step-number {
-  color: map.get($blue-palette, 300);
-}
-
-.step-title {
-  color: $white;
-}
-
 header {
   display: flex;
   justify-content: start;
@@ -52,11 +44,9 @@ li {
   height: 33px;
   border: 1px solid $white;
   border-radius: 999px;
-  color: $white;
 }
 
 .number-container.selected {
-  color: $black;
   background-color: map.get($blue-palette, 200);
   border: none;
 }

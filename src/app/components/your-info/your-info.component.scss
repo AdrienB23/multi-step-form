@@ -6,12 +6,6 @@
 //        CONTAINERS
 // =========================
 
-.title-container {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-100;
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -28,16 +22,4 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-h1, label {
-  color: map.get($blue-palette, 950);
-}
-
-h2 {
-  color: $grey;
-}
-
-.error {
-  color: map.get($red-palette, 500);
 }
