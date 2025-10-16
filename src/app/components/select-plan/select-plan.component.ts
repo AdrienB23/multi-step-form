@@ -19,7 +19,7 @@ export class SelectPlanComponent implements OnInit {
   text: { [p: string]: any } = {};
   plans: Plan[] = [];
   form!: FormGroup;
-  selectedPlanIndex?: number;
+  selectedPlanIndex: number = 0;
   isYearly: boolean = false;
 
 
@@ -27,21 +27,31 @@ export class SelectPlanComponent implements OnInit {
   }
 
   ngOnInit() {
-    forkJoin([
-      this.textService.getPlanText(),
-      this.textService.getPriceText()
-    ]).subscribe(([plan, price]) => {
-      this.text = { ...plan, ...price };
-    });
-    this.planService.getPlans().subscribe({
-      next: data => {
-        console.log(data);
-        this.plans = data;
-      }
-    });
     this.form = this.fb.group({
-      plan: ['', [Validators.required]]
+      plan: [0, [Validators.required]],
+      isYearly: [this.isYearly, [Validators.required]]
     });
+
+    const saved = this.formDataService.getStepData('plan');
+    if (saved) {
+      this.form.patchValue(saved);
+      this.selectedPlanIndex = this.form.value.plan;
+      this.isYearly = this.form.value.isYearly;
+    }
+
+    forkJoin({
+      textData: forkJoin([
+        this.textService.getPlanText(),
+        this.textService.getPriceText(),
+        this.textService.getLabelText()
+      ]),
+      plans: this.planService.getPlans()
+    }).subscribe(({ textData, plans }) => {
+      const [plan, price, label] = textData;
+      this.text = { ...plan, ...price, ...label };
+      this.plans = plans;
+    });
+
     this.form.statusChanges.subscribe(() => {
       const isValid = this.form.valid;
       this.stepValidation.setStepValid('plan', isValid);
@@ -52,8 +62,18 @@ export class SelectPlanComponent implements OnInit {
     });
   }
 
-  selectPlan(planId: number) {
-    this.selectedPlanIndex = planId;
+  selectPlan(planIndex: number) {
+    this.updateForm({ plan: planIndex });
+    this.selectedPlanIndex = planIndex;
+  }
+
+  selectYearly() {
+    this.updateForm({ isYearly: this.isYearly });
+  }
+
+  private updateForm(value: Partial<{ plan: number; isYearly: boolean }>) {
+    this.form.patchValue(value);
+    this.form.updateValueAndValidity();
   }
 
   onSubmit() {

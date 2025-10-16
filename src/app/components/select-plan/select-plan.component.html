@@ -1,27 +1,30 @@
 <div class="component-container">
   <div class="title-container">
-    <h1 class="text-1">{{ text['plan.title'] }}</h1>
-    <h2 class="text-3 r">{{ text['plan.description'] }}</h2>
+    <h1 class="text-1 primary">{{ text['plan.title'] }}</h1>
+    <h2 class="text-3 r secondary">{{ text['plan.description'] }}</h2>
   </div>
   <div class="plan-option-container">
     <div class="form-container">
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
-        <p-data-view [value]="plans" [paginator]="false">
+        <p-data-view [paginator]="false" [value]="plans">
           <ng-template #list let-items>
             <div class="plans-container">
               <div
-                *ngFor="let plan of items; let i = index"
                 (click)="selectPlan(i)"
+                *ngFor="let plan of items; let i = index"
                 [ngClass]="{ 'plan-card': true, 'selected': selectedPlanIndex === i }"
               >
                 <div class="plan-info">
-                  <img [src]="'assets/images/icon-' + plan.name.toLowerCase() + '.svg'" alt="{{ plan.name }} icon" class="plan-icon" />
-                  <div class="plan-text">
-                    <h3 class="text-3 m">{{ plan.name }}</h3>
-                    <p class="text-4 r">
-                      {{ isYearly ? plan.yearly_price : plan.monthly_price }}{{ isYearly ? text['price.year'] : text['price.month']}}
-                    </p>
-                    <p *ngIf="isYearly" class="text-5 r promo">
+                  <img [src]="'assets/images/icon-' + plan.name.toLowerCase() + '.svg'" alt="{{ plan.name }} icon"
+                       class="plan-icon"/>
+                  <div class="plan-option-details">
+                    <div class="plan-option-text">
+                      <h3 class="text-3 m primary">{{ plan.name }}</h3>
+                      <p class="text-4 r secondary">
+                        {{ isYearly ? plan.yearly_price : plan.monthly_price }}{{ isYearly ? text['price.year'] : text['price.month'] }}
+                      </p>
+                    </div>
+                    <p *ngIf="isYearly" class="text-5 r primary">
                       2 {{ text['plan.free'] }}
                     </p>
                   </div>
@@ -34,7 +37,17 @@
     </div>
     <div class="billing-cycle-container">
       <div class="billing-cycle-options">
-        <p-toggle-switch [(ngModel)]="isYearly"/>
+        <span [ngClass]="{
+          'text-4 b': true,
+          'primary': !isYearly,
+          'secondary': isYearly
+        }">{{ text['label.monthly'] }}</span>
+        <p-toggle-switch [(ngModel)]="isYearly" (click)="selectYearly()"/>
+        <span [ngClass]="{
+          'text-4 b': true,
+          'primary': isYearly,
+          'secondary': !isYearly
+        }">{{ text['label.yearly'] }}</span>
       </div>
     </div>
   </div>

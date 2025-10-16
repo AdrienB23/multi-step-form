@@ -33,6 +33,10 @@ export class TextService {
     return this.getTextByPrefix('price');
   }
 
+  getLabelText(): Observable<{ [key: string]: any }> {
+    return this.getTextByPrefix('label');
+  }
+
   private getTextByPrefix(prefix: string): Observable<{ [key: string]: any }> {
     if (environment.frontendmentor) {
       return this.getTextByPrefixFromFile(prefix);
