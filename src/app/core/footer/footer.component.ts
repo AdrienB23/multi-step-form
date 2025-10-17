@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { PageEnum } from '../../shared/utils/page-enum';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {TextService} from '../../shared/services/text.service';
 import {StepValidationService} from '../../shared/services/step-validation.service';
+import {ScreenService} from '../../shared/services/screen.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,12 +13,12 @@ import {StepValidationService} from '../../shared/services/step-validation.servi
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent implements OnInit, OnDestroy {
-  @Input() screenWidth!: number;
   @Input() page!: PageEnum;
   @Input() formValid!: boolean;
   @Output() pageChange = new EventEmitter<unknown>();
   pages = ['info', 'plan', 'add-ons', 'summary'];
   text!: { [p: string]: any };
+  screen = inject(ScreenService);
 
   private routerSub!: Subscription;
 

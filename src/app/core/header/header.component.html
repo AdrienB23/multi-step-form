@@ -13,7 +13,7 @@
           }">
             {{ i + 1 }}
           </div>
-          <div *ngIf="screenWidth > 600" class="text-container">
+          <div *ngIf="!screen.isMobile()" class="text-container">
             <span class="step-number text-5 r contrast-secondary">{{ text['header.step'].toUpperCase() }} {{ i + 1 }}</span>
             <span class="step-title text-4 b contrast-primary">{{ navItem.toUpperCase() }}</span>
           </div>

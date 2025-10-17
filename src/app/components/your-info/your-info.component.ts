@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {TextService} from '../../shared/services/text.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StepValidationService} from '../../shared/services/step-validation.service';
 import {FormDataService} from '../../shared/services/form-data.service';
+import {ScreenService} from '../../shared/services/screen.service';
 
 @Component({
   selector: 'app-your-info',
@@ -16,6 +17,7 @@ export class YourInfoComponent implements OnInit {
   text: { [p: string]: any } = {};
   form!: FormGroup;
   value: string | undefined;
+  screen = inject(ScreenService);
 
   constructor(private fb: FormBuilder, private textService: TextService, private stepValidationService: StepValidationService, private formDataService: FormDataService) {
   }

@@ -1,6 +1,7 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { PageEnum } from '../../shared/utils/page-enum';
 import {TextService} from '../../shared/services/text.service';
+import {ScreenService} from '../../shared/services/screen.service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,9 @@ import {TextService} from '../../shared/services/text.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit, OnChanges  {
-  @Input() screenWidth!: number;
   @Input() page!: PageEnum;
   text!: {[p: string]: any};
+  screen = inject(ScreenService);
 
   currentStep!: number;
 

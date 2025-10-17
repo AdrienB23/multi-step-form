@@ -1,6 +1,6 @@
 <div class="component-container">
   <div class="title-container">
-    <h1 class="text-1 primary">{{ text['plan.title'] }}</h1>
+    <h1 [ngClass]="{'text-1': !screen.isMobile(), 'text-2': screen.isMobile(), 'primary': true}">{{ text['plan.title'] }}</h1>
     <h2 class="text-3 r secondary">{{ text['plan.description'] }}</h2>
   </div>
   <div class="plan-option-container">

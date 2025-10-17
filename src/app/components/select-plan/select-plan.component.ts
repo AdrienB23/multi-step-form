@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TextService} from '../../shared/services/text.service';
 import {StepValidationService} from '../../shared/services/step-validation.service';
@@ -6,6 +6,7 @@ import {Plan} from '../../shared/models/plan';
 import {PlanService} from '../../shared/services/plan.service';
 import {FormDataService} from '../../shared/services/form-data.service';
 import {forkJoin} from 'rxjs';
+import {ScreenService} from '../../shared/services/screen.service';
 
 @Component({
   selector: 'app-select-plan',
@@ -21,6 +22,7 @@ export class SelectPlanComponent implements OnInit {
   form!: FormGroup;
   selectedPlanIndex: number = 0;
   isYearly: boolean = false;
+  screen = inject(ScreenService);
 
 
   constructor(private fb: FormBuilder, private textService: TextService, private planService: PlanService, private stepValidation: StepValidationService, private formDataService: FormDataService) {

@@ -1,25 +1,21 @@
 <div [ngClass]="{
   'page-container': true,
-  'mobile': screenWidth <= 600
+  'mobile': screen.isMobile()
  }">
   <main>
-    <div *ngIf="screenWidth > 600" class="step-container">
-      <app-header [page]="page" [screenWidth]="screenWidth"></app-header>
+    <div *ngIf="!screen.isMobile()" class="step-container">
+      <app-header [page]="page"></app-header>
       <div class="main-container">
-        <router-outlet (activate)="onRouteActivate($event)"
-                       [routerOutletData]="{ screenWidth: screenWidth }"></router-outlet>
-        <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"
-                    [screenWidth]="screenWidth"></app-footer>
+        <router-outlet (activate)="onRouteActivate($event)"></router-outlet>
+        <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"></app-footer>
       </div>
     </div>
-    <div *ngIf="screenWidth <= 600" class="step-container">
+    <div *ngIf="screen.isMobile()" class="step-container">
       <div class="main-container">
-        <app-header [page]="page" [screenWidth]="screenWidth"></app-header>
-        <router-outlet (activate)="onRouteActivate($event)"
-                       [routerOutletData]="{ screenWidth: screenWidth }"></router-outlet>
+        <app-header [page]="page"></app-header>
+        <router-outlet (activate)="onRouteActivate($event)"></router-outlet>
       </div>
-      <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"
-                  [screenWidth]="screenWidth"></app-footer>
+      <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"></app-footer>
     </div>
   </main>
 </div>
