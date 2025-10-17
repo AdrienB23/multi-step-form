@@ -22,97 +22,105 @@ body {
     width: 100%;
   }
 
+  @media only screen and (max-width: 600px) {
+    .p-inputtext {
+      border-radius: 4px;
+    }
+  }
+
   .p-inputtext.invalid, .invalid .p-inputtext {
     border-color: map.get($red-palette, 500);
   }
-}
 
-a {
-  text-decoration: none;
-}
 
-ul {
-  list-style: none;
-}
 
-// =========================
-//        TYPOGRAPHY
-// =========================
+  a {
+    text-decoration: none;
+  }
 
-/* FONT SIZE */
+  ul {
+    list-style: none;
+  }
 
-.text-1 {
-  font-size: 32px;
-}
+  // =========================
+  //        TYPOGRAPHY
+  // =========================
 
-.text-2 {
-  font-size: 24px;
-}
+  /* FONT SIZE */
 
-.text-3 {
-  font-size: 16px;
-}
+  .text-1 {
+    font-size: 32px;
+  }
 
-.text-4 {
-  font-size: 14px;
-}
+  .text-2 {
+    font-size: 24px;
+  }
 
-.text-5 {
-  font-size: 12px;
-}
+  .text-3 {
+    font-size: 16px;
+  }
 
-/* FONT WEIGHT */
+  .text-4 {
+    font-size: 14px;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: $regular;
-}
+  .text-5 {
+    font-size: 12px;
+  }
 
-.text-1, .text-2, .b {
-  font-weight: $bold;
-}
+  /* FONT WEIGHT */
 
-.m {
-  font-weight: $medium;
-}
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: $regular;
+  }
 
-/* LINE HEIGHT */
+  .text-1, .text-2, .b {
+    font-weight: $bold;
+  }
 
-.text-1, .text-2, .b, .text-3.m, .text-4, .text-5 {
-  line-height: 120%;
-}
+  .m {
+    font-weight: $medium;
+  }
 
-.text-3.r, .text-4.m {
-  line-height: 150%;
-}
+  /* LINE HEIGHT */
 
-.text-4.b {
-  letter-spacing: 1px;
-}
+  .text-1, .text-2, .b, .text-3.m, .text-4, .text-5 {
+    line-height: 120%;
+  }
 
-/* COLORS */
+  .text-3.r, .text-4.m {
+    line-height: 150%;
+  }
 
-.primary {
-  color: map.get($blue-palette, 950);
-}
+  .text-4.b {
+    letter-spacing: 1px;
+  }
 
-.secondary {
-  color: $grey;
-}
+  /* COLORS */
 
-.contrast-primary {
-  color: $white;
-}
+  .primary {
+    color: map.get($blue-palette, 950);
+  }
 
-.contrast-secondary {
-  color: map.get($blue-palette, 300);
-}
+  .secondary {
+    color: $grey;
+  }
 
-.info {
-  color: map.get($purple-palette, 600);
-}
+  .contrast-primary {
+    color: $white;
+  }
 
-.error {
-  color: map.get($red-palette, 500);
+  .contrast-secondary {
+    color: map.get($blue-palette, 300);
+  }
+
+  .info {
+    color: map.get($purple-palette, 600);
+  }
+
+  .error {
+    color: map.get($red-palette, 500);
+  }
 }
 
 // =========================
@@ -123,6 +131,17 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: $spacing-500;
+}
+
+@media only screen and (max-width: 600px) {
+  .component-container {
+    background: $white;
+    padding: $spacing-400 $spacing-300;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.0951);
+    gap: $spacing-300;
+  }
 }
 
 .title-container {

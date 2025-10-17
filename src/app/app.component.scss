@@ -68,7 +68,6 @@ footer {
     height: initial;
     background: none;
     box-shadow: none;
-    margin-top: $spacing-400;
   }
 
   .step-container {
@@ -78,15 +77,13 @@ footer {
     min-width: initial;
     max-width: initial;
     width: 100%;
-    height: calc(100vh - $spacing-400);
+    height: 100vh;
   }
 
   .main-container {
     align-items: center;
     justify-content: start;
-  }
-
-  app-header {
     width: 100%;
+    padding: 0 $spacing-200;
   }
 }
