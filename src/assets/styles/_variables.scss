@@ -115,4 +115,21 @@ $spacing-1000: 80px;
   --p-button-contrast-color: #{$grey};
   --p-button-contrast-hover-color: #{map.get($blue-palette, 950)};
   --p-button-contrast-active-color: #{map.get($blue-palette, 950)};
+
+  // =========================
+  //        CHECKBOX
+  // =========================
+  --p-checkbox-border-radius: 4px;
+  --p-checkbox-width: 20px;
+  --p-checkbox-height: 20px;
+  --p-checkbox-checked-background: #{map.get($purple-palette, 600)};
+  --p-checkbox-checked-hover-background: #{map.get($purple-palette, 600)};
+  --p-checkbox-checked-border-color: transparent;
+  --p-checkbox-checked-focus-border-color: transparent;
+  --p-checkbox-checked-hover-border-color: transparent;
+
+  --p-checkbox-border-color: #{map.get($purple-palette, 200)};
+  --p-checkbox-hover-border-color: #{map.get($purple-palette, 600)};
+  --p-checkbox-focus-border-color: #{map.get($purple-palette, 600)};
+  --p-checkbox-icon-color: #{$white};
 }
