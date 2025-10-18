@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   @Input() page!: PageEnum;
   @Input() formValid!: boolean;
   @Output() pageChange = new EventEmitter<unknown>();
-  pages = ['info', 'plan', 'add-ons', 'summary'];
+  pages = ['info', 'plan', 'addons', 'summary'];
   text!: { [p: string]: any };
   screen = inject(ScreenService);
 
@@ -61,7 +61,7 @@ export class FooterComponent implements OnInit, OnDestroy {
       case 'plan':
         this.page = PageEnum.PLAN;
         break;
-      case 'add-ons':
+      case 'addons':
         this.page = PageEnum.ADD_ONS;
         break;
       case 'summary':

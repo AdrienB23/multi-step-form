@@ -2,6 +2,11 @@
 @use "sass:map";
 @use 'sass:color';
 
+// =========================
+//        FOOTER BAR
+// =========================
+
+// ===== Layout =====
 footer {
   display: flex;
   align-items: start;
@@ -20,12 +25,14 @@ footer {
   justify-content: end;
 }
 
+// ===== Buttons =====
 .next, .confirm {
   border-radius: 8px;
   padding: $spacing-200 $spacing-300;
   width: 123px;
 }
 
+// ===== Responsive =====
 @media only screen and (max-width: 992px) {
   footer {
     height: 80px;

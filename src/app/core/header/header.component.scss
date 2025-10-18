@@ -2,6 +2,11 @@
 @use "sass:map";
 @use 'sass:color';
 
+// =========================
+//       SIDEBAR HEADER
+// =========================
+
+// ===== Layout =====
 header {
   display: flex;
   justify-content: start;
@@ -24,6 +29,7 @@ header {
   border-radius: 10px;
 }
 
+// ===== Navigation list =====
 ul {
   display: flex;
   flex-direction: column;
@@ -36,6 +42,7 @@ li {
   column-gap: $spacing-200;
 }
 
+// ===== Step number circle =====
 .number-container {
   display: flex;
   justify-content: center;
@@ -44,18 +51,20 @@ li {
   height: 33px;
   border: 1px solid $white;
   border-radius: 999px;
+
+  &.selected {
+    background-color: map.get($blue-palette, 200);
+    border: none;
+  }
 }
 
-.number-container.selected {
-  background-color: map.get($blue-palette, 200);
-  border: none;
-}
-
+// ===== Step text section =====
 .text-container {
   display: flex;
   flex-direction: column;
 }
 
+// ===== Responsive =====
 @media only screen and (max-width: 600px) {
   header {
     height: initial;
