@@ -20,7 +20,7 @@ export class SelectPlanComponent implements OnInit {
   text: { [p: string]: any } = {};
   plans: Plan[] = [];
   form!: FormGroup;
-  selectedPlanIndex: number = 0;
+  selectedPlanIndex: number = -1;
   isYearly: boolean = false;
   screen = inject(ScreenService);
 
@@ -30,7 +30,7 @@ export class SelectPlanComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      plan: [0, [Validators.required]],
+      plan: [-1, [Validators.required]],
       isYearly: [this.isYearly, [Validators.required]]
     });
 
@@ -54,13 +54,9 @@ export class SelectPlanComponent implements OnInit {
       this.plans = plans;
     });
 
+    this.validStep();
     this.form.statusChanges.subscribe(() => {
-      const isValid = this.form.valid;
-      this.stepValidation.setStepValid('plan', isValid);
-      this.formValidChange.emit(isValid);
-      if (isValid) {
-        this.onSubmit();
-      }
+      this.validStep();
     });
   }
 
@@ -78,9 +74,19 @@ export class SelectPlanComponent implements OnInit {
     this.form.updateValueAndValidity();
   }
 
+  validStep() {
+    const isValid = this.form.valid;
+    this.stepValidation.setStepValid('plan', isValid);
+    this.formValidChange.emit(isValid);
+    if (isValid) {
+      this.onSubmit();
+    }
+  }
+
   onSubmit() {
     if (this.form.valid) {
       this.formDataService.setStepData('plan', this.form.value);
+      this.formDataService.setStepData('isYearly', this.isYearly);
     }
   }
 }
