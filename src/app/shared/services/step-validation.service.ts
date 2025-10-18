@@ -7,7 +7,7 @@ export class StepValidationService {
   private stepsValidity: { [key: string]: boolean } = {
     info: false,
     plan: false,
-    'add-ons': false,
+    addons: false,
   };
 
   setStepValid(step: string, isValid: boolean) {
