@@ -39,14 +39,19 @@ export class YourInfoComponent implements OnInit {
       this.form.patchValue(saved);
     }
 
+    this.validStep();
     this.form.statusChanges.subscribe(() => {
-      const isValid = this.form.valid;
-      this.stepValidationService.setStepValid('info', isValid);
-      this.formValidChange.emit(isValid);
-      if (isValid) {
-        this.onSubmit();
-      }
+      this.validStep();
     });
+  }
+
+  validStep() {
+    const isValid = this.form.valid;
+    this.stepValidationService.setStepValid('info', isValid);
+    this.formValidChange.emit(isValid);
+    if (isValid) {
+      this.onSubmit();
+    }
   }
 
   onSubmit() {
