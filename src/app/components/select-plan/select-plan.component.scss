@@ -78,6 +78,7 @@
   width: 100%;
   height: 48px;
   background: map.get($blue-palette, 50);
+  border-radius: 8px;
 }
 
 .billing-cycle-options {
@@ -85,4 +86,45 @@
   flex-direction: row;
   align-items: center;
   gap: $spacing-300;
+}
+
+@media only screen and (max-width: 992px) {
+  .plan-option-container {
+    gap: $spacing-300
+  }
+
+  .plans-container {
+    flex-direction: column;
+    gap: $spacing-100;
+  }
+
+  .plan-card {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .plan-info {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: $spacing-200;
+  }
+
+  .plan-option-details {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .plan-option-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .plan-option-details {
+    gap: 0;
+  }
 }

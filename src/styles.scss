@@ -133,6 +133,12 @@ body {
   gap: $spacing-500;
 }
 
+@media only screen and (max-width: 992px) {
+  .component-container {
+    gap: $spacing-400;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .component-container {
     background: $white;

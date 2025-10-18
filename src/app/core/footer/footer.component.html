@@ -18,8 +18,8 @@
     <button *ngIf="page === PageEnum.SUMMARY" [ngClass]="{
       'next': true,
       'm': true,
-      'text-4': !screen.isMobile(),
-      'text-3': screen.isMobile()}" pButton
+      'text-4': screen.isMobile(),
+      'text-3': !screen.isMobile()}" pButton
             routerLink="thank-you" severity="secondary">
       <span class="contrast-primary" pButtonLabel>{{ text['footer.confirm'] }}</span>
     </button>
