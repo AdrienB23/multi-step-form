@@ -19,7 +19,7 @@ export const routes: Routes = [
     canActivate: [stepGuard]
   },
   {
-    path: 'add-ons',
+    path: 'addons',
     component: AddOnsComponent,
     canActivate: [stepGuard]
   },

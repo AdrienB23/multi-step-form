@@ -1,1 +1,53 @@
-<p>add-ons works!</p>
+<div class="component-container">
+  <div class="title-container">
+    <h1
+      [ngClass]="{'text-1': !screen.isMobile(), 'text-2': screen.isMobile(), 'primary': true}">{{ text['add.title'] }}</h1>
+    <h2 class="text-3 r secondary">{{ text['add.description'] }}</h2>
+  </div>
+  <div class="addons-option-container">
+    <div class="form-container">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div formArrayName="addons">
+          <p-data-view [paginator]="false" [value]="addons">
+            <ng-template #list let-items>
+              <div class="addons-container">
+                <div
+                  (click)="toggleAddon(i)"
+                  *ngFor="let addon of items; let i = index"
+                  [ngClass]="{ 'addon-item': true, 'selected': form.get('addons')?.value[i] }"
+                >
+                  <div class="addon-content">
+                    <div class="addon-details">
+                      <p-checkbox (click)="toggleAddon(i)" [binary]="true" [formControlName]="i"
+                                  [inputId]="'addon-' + i">
+                        <ng-template pTemplate="icon">
+                          <img alt="Checkmark Icon" src="assets/images/icon-checkmark.svg">
+                        </ng-template>
+                      </p-checkbox>
+                      <div class="addon-text-container">
+                        <span
+                          [ngClass]="{'text-3': !screen.isMobile(), 'text-4': screen.isMobile(), 'm': true, 'primary': true}">
+                          {{ addon.label }}
+                        </span>
+                        <span
+                          [ngClass]="{'text-4': !screen.isMobile(), 'text-5': screen.isMobile(), 'r': true, 'secondary': true}">
+                          {{ addon.description }}
+                        </span>
+                      </div>
+                    </div>
+                    <span
+                      [ngClass]="{'text-4': !screen.isMobile(), 'text-5': screen.isMobile(), 'r': true, 'info': true}">
+                      +${{ isYearly ? addon.price_y : addon.price_m }}{{ isYearly ? text['price.year'] : text['price.month'] }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-data-view>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

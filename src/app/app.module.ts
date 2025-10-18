@@ -22,6 +22,8 @@ import {InputMask} from 'primeng/inputmask';
 import {StyleClass} from 'primeng/styleclass';
 import {DataView} from "primeng/dataview";
 import {ToggleSwitch} from 'primeng/toggleswitch';
+import {Checkbox} from "primeng/checkbox";
+import {PrimeTemplate} from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -34,21 +36,23 @@ import {ToggleSwitch} from 'primeng/toggleswitch';
     ThankYouComponent,
     FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    ButtonDirective,
-    ButtonLabel,
-    ReactiveFormsModule,
-    InputText,
-    InputNumber,
-    InputMask,
-    StyleClass,
-    DataView,
-    ToggleSwitch,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        ButtonDirective,
+        ButtonLabel,
+        ReactiveFormsModule,
+        InputText,
+        InputNumber,
+        InputMask,
+        StyleClass,
+        DataView,
+        ToggleSwitch,
+        FormsModule,
+        Checkbox,
+        PrimeTemplate
+    ],
   providers: [
     provideAnimationsAsync(),
     providePrimeNG(),
