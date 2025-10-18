@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, map, Observable} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AddOns } from '../models/add-ons';
 
@@ -15,10 +15,21 @@ export class AddOnsService {
   constructor(private http: HttpClient) { }
 
   getAddOns(): Observable<AddOns[]> {
-    return this.http.get<AddOns[]>(API_URL);
+    if (environment.frontendmentor) {
+      return this.getAddOnsFromFile();
+    }
+    return this.http.get<AddOns[]>(API_URL).pipe(
+      catchError(() => {
+        return this.getAddOnsFromFile();
+      })
+    );
   }
 
-  getAddOnsFromFile(): Observable<AddOns[]> {
-    return this.http.get<AddOns[]>(FILE_URL + 'add-on.json');
+  private getAddOnsFromFile(): Observable<AddOns[]> {
+    return this.http.get<AddOns[]>(FILE_URL + 'add-on.json').pipe(
+      map(data => {
+        return data;
+      })
+    );
   }
 }

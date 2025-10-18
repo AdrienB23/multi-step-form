@@ -37,6 +37,10 @@ export class TextService {
     return this.getTextByPrefix('label');
   }
 
+  getAddText(): Observable<{ [key: string]: any }> {
+    return this.getTextByPrefix('add');
+  }
+
   private getTextByPrefix(prefix: string): Observable<{ [key: string]: any }> {
     if (environment.frontendmentor) {
       return this.getTextByPrefixFromFile(prefix);
