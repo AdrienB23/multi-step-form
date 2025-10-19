@@ -10,9 +10,9 @@
           <ng-template #list let-items>
             <div class="plans-container">
               <div
-                (click)="selectPlan(i)"
+                (click)="selectPlan(plan)"
                 *ngFor="let plan of items; let i = index"
-                [ngClass]="{ 'plan-card': true, 'selected': selectedPlanIndex === i }"
+                [ngClass]="{ 'plan-card': true, 'selected': selectedPlan && selectedPlan.plan_id === plan.plan_id }"
               >
                 <div class="plan-info">
                   <img [src]="'assets/images/icon-' + plan.name.toLowerCase() + '.svg'" alt="{{ plan.name }} icon"

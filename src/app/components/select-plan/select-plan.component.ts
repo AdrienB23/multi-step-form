@@ -20,25 +20,30 @@ export class SelectPlanComponent implements OnInit {
   text: { [p: string]: any } = {};
   plans: Plan[] = [];
   form!: FormGroup;
-  selectedPlanIndex: number = -1;
+  selectedPlan: Plan | null = null;
   isYearly: boolean = false;
   screen = inject(ScreenService);
 
 
-  constructor(private fb: FormBuilder, private textService: TextService, private planService: PlanService, private stepValidation: StepValidationService, private formDataService: FormDataService) {
+  constructor(
+    private fb: FormBuilder,
+    private textService: TextService,
+    private planService: PlanService,
+    private stepValidation: StepValidationService,
+    private formDataService: FormDataService) {
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      plan: [-1, [Validators.required]],
+      plan: [this.selectedPlan, [Validators.required]],
       isYearly: [this.isYearly, [Validators.required]]
     });
 
-    const saved = this.formDataService.getStepData('plan');
-    if (saved) {
-      this.form.patchValue(saved);
-      this.selectedPlanIndex = this.form.value.plan;
-      this.isYearly = this.form.value.isYearly;
+    const savedPlan = this.formDataService.getStepData('plan');
+    const savedYearly = this.formDataService.getStepData('isYearly');
+    if (typeof savedYearly === 'boolean') {
+      this.isYearly = savedYearly;
+      this.form.patchValue({ isYearly: this.isYearly });
     }
 
     forkJoin({
@@ -48,34 +53,31 @@ export class SelectPlanComponent implements OnInit {
         this.textService.getLabelText()
       ]),
       plans: this.planService.getPlans()
-    }).subscribe(({ textData, plans }) => {
+    }).subscribe(({textData, plans}) => {
       const [plan, price, label] = textData;
-      this.text = { ...plan, ...price, ...label };
+      this.text = {...plan, ...price, ...label};
       this.plans = plans;
+
+      if (savedPlan) {
+        const found = this.plans.find(p => p.name === savedPlan.name);
+        if (found) {
+          this.selectedPlan = found;
+          this.form.patchValue({
+            plan: found,
+            isYearly: this.isYearly
+          });
+        }
+      }
+      this.validStep();
     });
 
-    this.validStep();
     this.form.statusChanges.subscribe(() => {
       this.validStep();
     });
   }
 
-  selectPlan(planIndex: number) {
-    this.updateForm({ plan: planIndex });
-    this.selectedPlanIndex = planIndex;
-  }
-
-  selectYearly() {
-    this.updateForm({ isYearly: this.isYearly });
-  }
-
-  private updateForm(value: Partial<{ plan: number; isYearly: boolean }>) {
-    this.form.patchValue(value);
-    this.form.updateValueAndValidity();
-  }
-
   validStep() {
-    const isValid = this.form.valid;
+    const isValid = this.form.valid && this.selectedPlan !== null;
     this.stepValidation.setStepValid('plan', isValid);
     this.formValidChange.emit(isValid);
     if (isValid) {
@@ -83,9 +85,25 @@ export class SelectPlanComponent implements OnInit {
     }
   }
 
+  selectPlan(plan: Plan) {
+    this.selectedPlan = plan;
+    this.updateForm({ plan: plan, isYearly: this.isYearly });
+    this.onSubmit();
+  }
+
+  selectYearly() {
+    this.updateForm({isYearly: this.isYearly});
+    this.onSubmit()
+  }
+
+  private updateForm(value: Partial<{ plan: Plan; isYearly: boolean }>) {
+    this.form.patchValue(value);
+    this.form.updateValueAndValidity();
+  }
+
   onSubmit() {
-    if (this.form.valid) {
-      this.formDataService.setStepData('plan', this.form.value);
+    if (this.form.valid && this.selectedPlan) {
+      this.formDataService.setStepData('plan', this.selectedPlan);
       this.formDataService.setStepData('isYearly', this.isYearly);
     }
   }
