@@ -1,5 +1,5 @@
 export interface AddOns {
-  id: number
+  add_ons_id: number
   label: string
   description: string
   price_m: number

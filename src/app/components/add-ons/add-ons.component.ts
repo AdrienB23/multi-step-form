@@ -24,7 +24,12 @@ export class AddOnsComponent implements OnInit {
   screen = inject(ScreenService);
   isYearly = false;
 
-  constructor(private fb: FormBuilder, private textService: TextService, private addOnsService: AddOnsService, private stepValidation: StepValidationService, private formDataService: FormDataService) {
+  constructor(
+    private fb: FormBuilder,
+    private textService: TextService,
+    private addOnsService: AddOnsService,
+    private stepValidation: StepValidationService,
+    private formDataService: FormDataService) {
   }
 
   ngOnInit() {
@@ -41,19 +46,20 @@ export class AddOnsComponent implements OnInit {
       this.textService.getAddText(),
       this.textService.getPriceText(),
       this.addOnsService.getAddOns()
-    ]).subscribe(([addon, price, addons]) => {
-      this.text = {...addon, ...price};
+    ]).subscribe(([addonText, priceText, addons]) => {
+      this.text = {...addonText, ...priceText};
       this.addons = addons;
 
       const addonControls = addons.map(() => this.fb.control(false));
       const addonsArray = this.fb.array(addonControls);
       this.form.setControl('addons', addonsArray);
 
-      const savedIndexes = this.formDataService.getStepData('addons');
-      if (Array.isArray(savedIndexes)) {
+      const savedAddons = this.formDataService.getStepData('addons');
+      if (Array.isArray(savedAddons)) {
         const formArray = this.form.get('addons') as FormArray;
-        savedIndexes.forEach((i: number) => {
-          if (formArray.at(i)) formArray.at(i).setValue(true);
+        savedAddons.forEach((savedAddon: AddOns) => {
+          const index = this.addons.findIndex(a => a.add_ons_id === savedAddon.add_ons_id);
+          if (index !== -1) formArray.at(index).setValue(true);
         });
       }
 
@@ -69,8 +75,6 @@ export class AddOnsComponent implements OnInit {
     const currentValue = formArray.at(index).value;
     formArray.at(index).setValue(!currentValue);
     this.form.updateValueAndValidity();
-
-    this.onSubmit();
   }
 
   validStep() {
@@ -83,9 +87,12 @@ export class AddOnsComponent implements OnInit {
   }
 
   onSubmit() {
-    const selectedIndexes = this.form.value.addons
-      .map((checked: boolean, i: number) => (checked ? i : null))
-      .filter((v: number | null) => v !== null);
-    this.formDataService.setStepData('addons', selectedIndexes);
+    const selectedAddons = this.form.value.addons
+      .map((checked: boolean, i: number) => (checked ? this.addons[i] : null))
+      .filter((v: AddOns | null) => v !== null) as AddOns[];
+
+    console.log(selectedAddons);
+
+    this.formDataService.setStepData('addons', selectedAddons);
   }
 }
