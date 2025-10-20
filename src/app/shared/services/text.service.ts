@@ -41,6 +41,10 @@ export class TextService {
     return this.getTextByPrefix('add');
   }
 
+  getSummaryText(): Observable<{ [key: string]: any}> {
+    return this.getTextByPrefix('summary');
+  }
+
   private getTextByPrefix(prefix: string): Observable<{ [key: string]: any }> {
     if (environment.frontendmentor) {
       return this.getTextByPrefixFromFile(prefix);
