@@ -26,10 +26,17 @@ export class SummaryComponent implements OnInit {
   isYearly = false;
   totalPrice = 0;
 
-  constructor(private fb: FormBuilder, private textService: TextService, private addOnsService: AddOnsService, private stepValidation: StepValidationService, private formDataService: FormDataService) {
+  constructor(
+    private fb: FormBuilder,
+    private textService: TextService,
+    private addOnsService: AddOnsService,
+    private stepValidation: StepValidationService,
+    private formDataService: FormDataService) {
   }
 
   ngOnInit() {
+    this.stepValidation.setStepValid("summary", true);
+
     const yearlySaved = this.formDataService.getStepData('isYearly');
     if (typeof yearlySaved === 'boolean') {
       this.isYearly = yearlySaved;
@@ -53,7 +60,7 @@ export class SummaryComponent implements OnInit {
       this.text = {...summary, ...price, ...label};
     });
 
-    this.getTotalPrice()
+    this.getTotalPrice();
   }
 
   getTotalPrice() {
