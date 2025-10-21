@@ -5,13 +5,13 @@
   <main>
     <div *ngIf="!screen.isMobile()" class="step-container">
       <app-header [page]="page"></app-header>
-      <div class="main-container">
+      <div [ngClass]="{'main-container': true, 'thank-you-container': page === PageEnum.THANK_YOU}">
         <router-outlet (activate)="onRouteActivate($event)"></router-outlet>
         <app-footer *ngIf="page !== PageEnum.THANK_YOU" [(page)]="page" [formValid]="formValid"></app-footer>
       </div>
     </div>
     <div *ngIf="screen.isMobile()" class="step-container">
-      <div class="main-container">
+      <div [ngClass]="{'main-container': true, 'thank-you-container': page === PageEnum.THANK_YOU}">
         <app-header [page]="page"></app-header>
         <router-outlet (activate)="onRouteActivate($event)"></router-outlet>
       </div>

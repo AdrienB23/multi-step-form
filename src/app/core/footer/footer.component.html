@@ -20,7 +20,7 @@
       'm': true,
       'text-4': screen.isMobile(),
       'text-3': !screen.isMobile()}" pButton
-            routerLink="thank-you" severity="secondary">
+            [routerLink]="'../thank-you'" severity="secondary">
       <span class="contrast-primary" pButtonLabel>{{ text['footer.confirm'] }}</span>
     </button>
   </div>

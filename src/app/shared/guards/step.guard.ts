@@ -9,7 +9,7 @@ export const stepGuard: CanActivateFn = (route, state) => {
   const currentStep = route.routeConfig?.path as string;
 
   // ordre des steps
-  const stepsOrder = ['info', 'plan', 'addons', 'summary'];
+  const stepsOrder = ['info', 'plan', 'addons', 'summary', 'thank-you'];
 
   const currentIndex = stepsOrder.indexOf(currentStep);
 
