@@ -4,7 +4,7 @@ import {catchError, map, Observable} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AddOns } from '../models/add-ons';
 
-const API_URL = environment.apiUrl + '/add-ons/';
+const API_URL = environment.production + '/add-ons/';
 const FILE_URL = 'assets/data/'
 
 @Injectable({

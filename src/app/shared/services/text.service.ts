@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import {catchError, map, Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const API_URL = environment.apiUrl + "/texts/";
+const API_URL = environment.production + "/texts/";
 const FILE_URL = 'assets/data/'
 
 @Injectable({
