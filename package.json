@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "predeploy": "ng build --configuration production",
-    "deploy": "gh-pages -d dist/multi-step-form -b production"
+    "deploy": "gh-pages -d dist/multi-step-form/browser -b production"
   },
   "private": true,
   "dependencies": {
