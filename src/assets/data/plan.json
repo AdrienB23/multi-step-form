@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Arcade",
+    "price_m": 9,
+    "price_y": 90
+  },
+  {
+    "id": 2,
+    "name": "Advanced",
+    "price_m": 12,
+    "price_y": 120
+  },
+  {
+    "id": 3,
+    "name": "Pro",
+    "price_m": 15,
+    "price_y": 150
+  }
+]

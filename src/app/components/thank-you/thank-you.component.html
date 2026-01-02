@@ -1,1 +1,10 @@
-<p>thank-you works!</p>
+<div class="component-container">
+  <div class="confirmation-container">
+    <img src="assets/images/icon-thank-you.svg" alt="Thank You Icon">
+    <div class="confirmation-text-container">
+      <h1 [ngClass]="{'text-1': !screen.isMobile(), 'text-2': screen.isMobile(), 'b': true, 'primary': true}">{{ text['thank.title'] }}</h1>
+      <p class="text-3 r secondary">{{ text['thank.description'] }}</p>
+    </div>
+  </div>
+</div>
+<p-progress-spinner *ngIf="loading" ariaLabel="loading" />

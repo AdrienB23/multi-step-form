@@ -1,1 +1,56 @@
-<p>select-plan works!</p>
+<div class="component-container">
+  <div class="title-container">
+    <h1 [ngClass]="{'text-1': !screen.isMobile(), 'text-2': screen.isMobile(), 'primary': true}">{{ text['plan.title'] }}</h1>
+    <h2 class="text-3 r secondary">{{ text['plan.description'] }}</h2>
+  </div>
+  <div class="plan-option-container">
+    <div class="form-container">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <p-data-view [paginator]="false" [value]="plans">
+          <ng-template #list let-items>
+            <div class="plans-container">
+              <div
+                (click)="selectPlan(plan)"
+                *ngFor="let plan of items; let i = index"
+                [ngClass]="{ 'plan-card': true, 'selected': selectedPlan && selectedPlan.plan_id === plan.plan_id }"
+              >
+                <div class="plan-info">
+                  <img [src]="'assets/images/icon-' + plan.name.toLowerCase() + '.svg'" alt="{{ plan.name }} icon"
+                       class="plan-icon"/>
+                  <div class="plan-option-details">
+                    <div class="plan-option-text">
+                      <h3 class="text-3 m primary">{{ plan.name }}</h3>
+                      <p class="text-4 r secondary">
+                        ${{ isYearly ? plan.price_y : plan.price_m }}{{ isYearly ? text['price.year'] : text['price.month'] }}
+                      </p>
+                    </div>
+                    <p *ngIf="isYearly" class="text-5 r primary">
+                      2 {{ text['plan.free'] }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-data-view>
+      </form>
+    </div>
+    <div class="billing-cycle-container">
+      <div class="billing-cycle-options">
+        <span [ngClass]="{
+          'text-4 b': true,
+          'primary': !isYearly,
+          'secondary': isYearly
+        }">{{ text['label.monthly'] }}</span>
+        <p-toggle-switch [(ngModel)]="isYearly" (click)="selectYearly()"/>
+        <span [ngClass]="{
+          'text-4 b': true,
+          'primary': isYearly,
+          'secondary': !isYearly
+        }">{{ text['label.yearly'] }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<p-progress-spinner *ngIf="loading" ariaLabel="loading" />
+

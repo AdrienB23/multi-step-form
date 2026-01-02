@@ -1,0 +1,68 @@
+@use '../../../assets/styles/variables' as *;
+@use "sass:map";
+@use 'sass:color';
+
+// =========================
+//     ADD-ONS COMPONENT
+// =========================
+
+// ===== Layout =====
+.addons-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-200;
+}
+
+// ===== Add-on item =====
+.addon-item {
+  display: flex;
+  border: 1px solid map.get($purple-palette, 200);
+  border-radius: 8px;
+  padding:$spacing-200;
+  cursor: pointer;
+
+  &:hover {
+    border-color: map.get($purple-palette, 600);
+  }
+
+  &.selected {
+    border-color: map.get($purple-palette, 600);
+    background-color: map.get($blue-palette, 50);
+  }
+}
+
+// ===== Add-on content =====
+.addon-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+// ===== Add-on details =====
+.addon-details {
+  display: flex;
+  align-items: center;
+  gap: $spacing-300;
+}
+
+.addon-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-100;
+}
+
+// ===== Responsive =====
+@media only screen and (max-width: 600px) {
+  .addons-container {
+    gap: $spacing-100;
+  }
+
+  .addon-details {
+    gap: $spacing-200;
+  }
+
+  .addon-text-container {
+    gap: 0;
+  }
+}

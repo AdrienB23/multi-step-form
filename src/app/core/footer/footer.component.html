@@ -1,0 +1,27 @@
+<footer *ngIf="text && page !== PageEnum.THANK_YOU">
+  <div [ngClass]="{
+    'footer-container': true,
+    'info': page === PageEnum.INFO
+  }" class="footer-container">
+    <button *ngIf="page !== PageEnum.INFO" [routerLink]="pages[page - 1]" class="back text-3 m" pButton severity="contrast"
+            type="button">
+      <span pButtonLabel>{{ text['footer.back'] }}</span>
+    </button>
+    <button *ngIf="page !== PageEnum.SUMMARY" [disabled]="!stepValidationService.isStepValid(pages[page])" [ngClass]="{
+    'next': true,
+    'm': true,
+    'text-4': screen.isMobile(),
+    'text-3': !screen.isMobile()}" [routerLink]="pages[page + 1]"
+            pButton severity="primary" type="button">
+      <span class="contrast-primary" pButtonLabel>{{ text['footer.next'] }}</span>
+    </button>
+    <button *ngIf="page === PageEnum.SUMMARY" [ngClass]="{
+      'next': true,
+      'm': true,
+      'text-4': screen.isMobile(),
+      'text-3': !screen.isMobile()}" [routerLink]="'../thank-you'" pButton
+            severity="secondary" type="button">
+      <span class="contrast-primary" pButtonLabel>{{ text['footer.confirm'] }}</span>
+    </button>
+  </div>
+</footer>

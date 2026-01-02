@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './core/app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { YourInfoComponent } from './components/your-info/your-info.component';
 import { HeaderComponent } from './core/header/header.component';
@@ -9,6 +8,23 @@ import { SelectPlanComponent } from './components/select-plan/select-plan.compon
 import { AddOnsComponent } from './components/add-ons/add-ons.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { provideHttpClient } from '@angular/common/http';
+import { AppRoutingModule } from './core/app-routing/app-routing.module';
+import { RouterModule } from '@angular/router';
+import { FooterComponent } from './core/footer/footer.component';
+import { ButtonDirective, ButtonLabel } from "primeng/button";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {InputText} from 'primeng/inputtext';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {providePrimeNG} from 'primeng/config';
+import {InputNumber} from 'primeng/inputnumber';
+import {InputMask} from 'primeng/inputmask';
+import {StyleClass} from 'primeng/styleclass';
+import {DataView} from "primeng/dataview";
+import {ToggleSwitch} from 'primeng/toggleswitch';
+import {Checkbox} from "primeng/checkbox";
+import {PrimeTemplate} from "primeng/api";
+import {ProgressSpinner} from "primeng/progressspinner";
 
 @NgModule({
   declarations: [
@@ -18,13 +34,32 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
     SelectPlanComponent,
     AddOnsComponent,
     SummaryComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        ButtonDirective,
+        ButtonLabel,
+        ReactiveFormsModule,
+        InputText,
+        InputNumber,
+        InputMask,
+        StyleClass,
+        DataView,
+        ToggleSwitch,
+        FormsModule,
+        Checkbox,
+        PrimeTemplate,
+        ProgressSpinner
+    ],
+  providers: [
+    provideAnimationsAsync(),
+    providePrimeNG(),
+    provideHttpClient(),
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
