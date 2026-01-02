@@ -21,7 +21,7 @@
                     <div class="plan-option-text">
                       <h3 class="text-3 m primary">{{ plan.name }}</h3>
                       <p class="text-4 r secondary">
-                        {{ isYearly ? plan.price_y : plan.price_m }}{{ isYearly ? text['price.year'] : text['price.month'] }}
+                        ${{ isYearly ? plan.price_y : plan.price_m }}{{ isYearly ? text['price.year'] : text['price.month'] }}
                       </p>
                     </div>
                     <p *ngIf="isYearly" class="text-5 r primary">
