@@ -11,14 +11,17 @@ import {TextService} from '../../shared/services/text.service';
 export class ThankYouComponent implements OnInit {
   text: { [p: string]: any } = {};
   screen = inject(ScreenService);
+  loading = true;
 
   constructor(
     private textService: TextService) {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.textService.getThankYouText().subscribe((data) => {
       this.text = data;
+      this.loading = false;
     })
   }
 }

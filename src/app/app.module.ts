@@ -24,6 +24,7 @@ import {DataView} from "primeng/dataview";
 import {ToggleSwitch} from 'primeng/toggleswitch';
 import {Checkbox} from "primeng/checkbox";
 import {PrimeTemplate} from "primeng/api";
+import {ProgressSpinner} from "primeng/progressspinner";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {PrimeTemplate} from "primeng/api";
         ToggleSwitch,
         FormsModule,
         Checkbox,
-        PrimeTemplate
+        PrimeTemplate,
+        ProgressSpinner
     ],
   providers: [
     provideAnimationsAsync(),

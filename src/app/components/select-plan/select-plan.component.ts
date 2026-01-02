@@ -23,7 +23,7 @@ export class SelectPlanComponent implements OnInit {
   selectedPlan: Plan | null = null;
   isYearly: boolean = false;
   screen = inject(ScreenService);
-
+  loading = true;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +34,7 @@ export class SelectPlanComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.form = this.fb.group({
       plan: [this.selectedPlan, [Validators.required]],
       isYearly: [this.isYearly, [Validators.required]]
@@ -57,6 +58,7 @@ export class SelectPlanComponent implements OnInit {
       const [plan, price, label] = textData;
       this.text = {...plan, ...price, ...label};
       this.plans = plans;
+      this.loading = false;
 
       if (savedPlan) {
         const found = this.plans.find(p => p.name === savedPlan.name);

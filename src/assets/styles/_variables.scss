@@ -132,4 +132,12 @@ $spacing-1000: 80px;
   --p-checkbox-hover-border-color: #{map.get($purple-palette, 600)};
   --p-checkbox-focus-border-color: #{map.get($purple-palette, 600)};
   --p-checkbox-icon-color: #{$white};
+
+  // =========================
+  //        PROGRESS SPINNER
+  // =========================
+  --p-progressspinner-color-one: #{map.get($blue-palette, 950)};
+  --p-progressspinner-color-two: #{map.get($blue-palette, 950)};
+  --p-progressspinner-color-three: #{map.get($blue-palette, 950)};
+  --p-progressspinner-color-four: #{map.get($blue-palette, 950)};
 }

@@ -18,14 +18,17 @@ export class YourInfoComponent implements OnInit {
   form!: FormGroup;
   value: string | undefined;
   screen = inject(ScreenService);
+  loading = true;
 
   constructor(private fb: FormBuilder, private textService: TextService, private stepValidationService: StepValidationService, private formDataService: FormDataService) {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.textService.getInfoText().subscribe({
       next: data => {
         this.text = data;
+        this.loading = false;
       }
     });
     this.form = this.fb.group({

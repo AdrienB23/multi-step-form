@@ -25,6 +25,7 @@ export class SummaryComponent implements OnInit {
   screen = inject(ScreenService);
   isYearly = false;
   totalPrice = 0;
+  loading = true;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +36,7 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.stepValidation.setStepValid("summary", true);
 
     const yearlySaved = this.formDataService.getStepData('isYearly');
@@ -58,6 +60,7 @@ export class SummaryComponent implements OnInit {
       this.textService.getLabelText()
     ]).subscribe(([summary, price, label]) => {
       this.text = {...summary, ...price, ...label};
+      this.loading = false;
     });
 
     this.getTotalPrice();

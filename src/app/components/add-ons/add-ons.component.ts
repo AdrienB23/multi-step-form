@@ -19,10 +19,10 @@ export class AddOnsComponent implements OnInit {
 
   text: { [p: string]: any } = {};
   addons: AddOns[] = [];
-  selectedAddons: AddOns[] = [];
   form!: FormGroup;
   screen = inject(ScreenService);
   isYearly = false;
+  loading = true;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +33,7 @@ export class AddOnsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.form = this.fb.group({
       addons: this.fb.array([]),
     });
@@ -49,6 +50,7 @@ export class AddOnsComponent implements OnInit {
     ]).subscribe(([addonText, priceText, addons]) => {
       this.text = {...addonText, ...priceText};
       this.addons = addons;
+      this.loading = false;
 
       const addonControls = addons.map(() => this.fb.control(false));
       const addonsArray = this.fb.array(addonControls);
